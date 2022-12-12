@@ -12,6 +12,7 @@ import com.ssy.demo.service.LoginService;
 import com.ssy.demo.service.iml.LoginServiceIml;
 import com.ssy.demo.util.CodeUtils;
 import cn.hutool.core.map.MapUtil;
+import jdk.nashorn.internal.ir.RuntimeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -138,7 +139,14 @@ public class LoginController  extends BaseController{
      * 登陆请求
      *
      */
-
+    @RequestMapping(value = "/forgetpw", method = RequestMethod.POST)
+    public Responseresult forgetpw(String account,String password){
+        Login login = loginServiceIml.forgetpw(account);
+        login.setPassword(password);
+        loginServiceIml.updateById(login);
+        result = CommonUtil.setResult("0","修改成功","");
+        return result;
+    }
 
 
 
@@ -161,7 +169,16 @@ public class LoginController  extends BaseController{
         }
         return result;
     }
-//编辑
+
+    /**
+     * 修改密码
+     * */
+
+
+    /**
+     * 编辑
+     * */
+
     @RequestMapping(value = "edit",method = RequestMethod.POST)
     public Responseresult edit(@RequestBody Login login){
         try {

@@ -9,5 +9,6 @@ public interface LoginService {
     public Page<Login> find(Integer pageNum, Integer pageSize, String search);
 
     public Login judge(String account);
-    
+
+//    public int forgetpw(Login login);
 }

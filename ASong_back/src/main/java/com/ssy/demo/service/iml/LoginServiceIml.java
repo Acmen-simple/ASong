@@ -32,9 +32,9 @@ public class LoginServiceIml extends ServiceImpl<LoginMapper, Login> implements 
         return loginMapper.selectPage(page, wrapper);
     }
 
-    public List<Login> findone(String oneaccount){
+    public List<Login> findone(String oneaccount) {
         QueryWrapper<Login> wrapper = new QueryWrapper<>();
-        wrapper.eq("account",oneaccount);
+        wrapper.eq("account", oneaccount);
         return loginMapper.selectList(wrapper);
     }
 
@@ -47,6 +47,14 @@ public class LoginServiceIml extends ServiceImpl<LoginMapper, Login> implements 
         wrapper.eq("account", account);
         return loginMapper.selectOne(wrapper);
     }
+    /**
+     * 修改密码
+     * */
+    public Login forgetpw(String account) {
+        QueryWrapper<Login> wrapper = new QueryWrapper<>();
+        wrapper.eq("account", account);
+        return loginMapper.selectOne(wrapper);
+    }
 
     /**
      * 添加
@@ -55,20 +63,22 @@ public class LoginServiceIml extends ServiceImpl<LoginMapper, Login> implements 
         return loginMapper.insert(login);
     }
 
-    /**判是否重复*/
-    public List<Login> findsame(@RequestParam String account){
+    /**
+     * 判是否重复
+     */
+    public List<Login> findsame(@RequestParam String account) {
         QueryWrapper<Login> wrapper = new QueryWrapper<>();
-        if(StringUtils.isNotBlank(account)){
-            wrapper.eq("account",account);
+        if (StringUtils.isNotBlank(account)) {
+            wrapper.eq("account", account);
         }
         return loginMapper.selectList(wrapper);
     }
 
-    public int editUser(Login login){
+    public int editUser(Login login) {
         return loginMapper.updateById(login);
     }
 
-    public int del(int id){
+    public int del(int id) {
         return loginMapper.deleteById(id);
     }
 
