@@ -59,8 +59,8 @@ export default {
       this.$refs.formData.validate((valid) => {
         request.post('/api/logincontroller/findone?oneaccount=' + this.formData.account)
           .then(res => {
-            console.log(res)
-            console.log(res.data[0].id);
+            // console.log(res)
+            // console.log(res.data[0].id);
             if (this.formData.account != "" && this.formData.password != "" && this.formData.userTel != "") {
               if (res.data.length != 0) {
                 if (this.formData.userTel == res.data[0].userTel) {
